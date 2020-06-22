@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Label layoutX="135.0" layoutY="40.0" text="PC-Name :" />
+      <TextField fx:id="name" layoutX="237.0" layoutY="40.0" />
+      <Label layoutX="135.0" layoutY="90.0" text="PC-Model :" />
+      <TextField fx:id="model" layoutX="237.0" layoutY="90.0" />
+      <Label layoutX="135.0" layoutY="140.0" text="Memory :" />
+      <TextField fx:id="memory" layoutX="237.0" layoutY="140.0" />
+      <Label layoutX="135.0" layoutY="190.0" text="HardDisk :" />
+      <TextField fx:id="harddisk" layoutX="237.0" layoutY="190.0" />
+      <Label layoutX="135.0" layoutY="240.0" text="Per-Date :" />
+      <TextField fx:id="predate" layoutX="237.0" layoutY="240.0" />
+      <Label layoutX="135.0" layoutY="290.0" text="Location :" />
+      <TextField fx:id="test1" layoutX="237.0" layoutY="290.0" />
+      <Button layoutX="304.0" layoutY="338.0" mnemonicParsing="false" onAction="#addData" prefHeight="25.0" prefWidth="112.0" text="Save" textFill="#2d8600" />
+      <Button layoutX="185.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Delete" textFill="RED" />
+      <Button layoutX="185.0" layoutY="382.0" mnemonicParsing="false" opacity="0.6" prefHeight="25.0" prefWidth="104.0" text="Update" />
+      <Button layoutX="304.0" layoutY="382.0" mnemonicParsing="false" onAction="#Search" opacity="0.6" prefHeight="25.0" prefWidth="112.0" text="Search" />
+
+   </children>
+</AnchorPane>
