@@ -13,20 +13,23 @@ import java.util.Scanner;
 
 public class Controller {
     @FXML
-    private TextField name , memory , model , harddisk , predate , test1;
-    private char character ;
-    //private String hell [];
-    public Controller(){
+    private TextField name, memory, model, harddisk, predate, test1;
+    private char character;
+    private ArrayList<String> arr ;
+    private String adder = "" ;
 
+    //private String hell [];
+    public Controller() {
+        arr = new ArrayList<String>();
     }
 
     public void addData(ActionEvent actionEvent) { // Save Button !
         try {
-             //file location
-            FileWriter output = new FileWriter("D:\\Collage\\Summer2020\\DataBase\\test.txt" , true);
+            //file location
+            FileWriter output = new FileWriter("D:\\Collage\\Summer2020\\DataBase\\test.txt", true);
             //BufferedWriter printWriter = new BufferedWriter(output);
-            if (name.getText().isEmpty() || memory.getText().isEmpty() || model.getText().isEmpty() || harddisk.getText().isEmpty() || predate.getText().isEmpty() || test1.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null , "Please fill in all TextFields!!");
+            if (name.getText().isEmpty() || memory.getText().isEmpty() || model.getText().isEmpty() || harddisk.getText().isEmpty() || predate.getText().isEmpty() || test1.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please fill in all TextFields!!");
             } // all TextFields must not be empty !
             else {
 
@@ -45,43 +48,89 @@ public class Controller {
                 harddisk.clear();
                 predate.clear();
                 test1.clear();
-                 output.close();
+                output.close();
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void readFile() {
+        try {
+            //FileReader fileReader = new FileReader("D:\\Collage\\Summer2020\\DataBase\\test.txt");
+            File file = new File("test.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNext()) {
+                String s = scanner.next();
+                String[] tokens = s.split(",");
+                if (tokens[0].equalsIgnoreCase(name.getText())) {
+                    model.setText(tokens[1]);
+                    memory.setText(tokens[2]);
+                    harddisk.setText(tokens[3]);
+                    predate.setText(tokens[4]);
+                    test1.setText(tokens[5]);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     public void Search(ActionEvent actionEvent) {
         if (name.getText().isEmpty())
-            JOptionPane.showMessageDialog(null , "Cannot update please put a name !");
+            JOptionPane.showMessageDialog(null, "Cannot update please put a name !");
         else {
+            readFile();
+        }
+    }
+
+    public void deleteData(ActionEvent actionEvent) {
+        if (name.getText().isEmpty())
+            JOptionPane.showMessageDialog(null, "Cannot update please put a name !");
+        else{
             try {
                 //FileReader fileReader = new FileReader("D:\\Collage\\Summer2020\\DataBase\\test.txt");
                 File file = new File("test.txt");
                 Scanner scanner = new Scanner(file);
 
-                while (scanner.hasNext()){
+                while (scanner.hasNext()) {
                     String s = scanner.next();
                     String[] tokens = s.split(",");
-                    if (tokens[0].equalsIgnoreCase(name.getText())){
-                        model.setText(tokens[1]);
-                        memory.setText(tokens[2]);
-                        harddisk.setText(tokens[3]);
-                        predate.setText(tokens[4]);
-                        test1.setText(tokens[5]);
+                    if (tokens[0].equalsIgnoreCase(name.getText())) {
+                        System.out.println("Name found");
                     }
+                    else {
+                        for (String token : tokens) {
+                            adder = adder + token +",";
+                        }
+                        arr.add(adder);
+                        adder = "" ;
+                    }
+
+
                 }
-            }
-            catch (Exception e){
+                FileWriter output = new FileWriter("D:\\Collage\\Summer2020\\DataBase\\test.txt");
+                for (String c : arr){
+                    output.write(c);
+                    output.write("\n");
+                }
+                output.close();
+                arr.clear();
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            }
-
-
         }
+
+    }
+
+    public void updateData(ActionEvent actionEvent) {
+        
+    }
 }
 // end of class controller !!
 
