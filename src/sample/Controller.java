@@ -41,7 +41,6 @@ public class Controller {
                 output.write(test1.getText());
                 output.write("\n");
 
-
                 name.clear(); // for clearing all fields!
                 model.clear();
                 memory.clear();
@@ -57,7 +56,6 @@ public class Controller {
 
     public void readFile() {
         try {
-            //FileReader fileReader = new FileReader("D:\\Collage\\Summer2020\\DataBase\\test.txt");
             File file = new File("test.txt");
             Scanner scanner = new Scanner(file);
 
@@ -87,12 +85,11 @@ public class Controller {
         }
     }
 
-    public void deleteData(ActionEvent actionEvent) {
+    public void deleteData() {
         if (name.getText().isEmpty())
             JOptionPane.showMessageDialog(null, "Cannot update please put a name !");
         else{
             try {
-                //FileReader fileReader = new FileReader("D:\\Collage\\Summer2020\\DataBase\\test.txt");
                 File file = new File("test.txt");
                 Scanner scanner = new Scanner(file);
 
@@ -111,7 +108,7 @@ public class Controller {
                     }
 
 
-                }
+                } // re-add after deleting everything
                 FileWriter output = new FileWriter("D:\\Collage\\Summer2020\\DataBase\\test.txt");
                 for (String c : arr){
                     output.write(c);
@@ -123,13 +120,56 @@ public class Controller {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     public void updateData(ActionEvent actionEvent) {
-        
+        if (name.getText().isEmpty())
+            JOptionPane.showMessageDialog(null, "Cannot update please put a name !");
+        else {
+
+            try {
+
+                File file = new File("test.txt");
+                Scanner scanner = new Scanner(file);
+
+                while (scanner.hasNext()) {
+                    String s = scanner.next();
+                    String[] tokens = s.split(",");
+                    if (tokens[0].equalsIgnoreCase(name.getText())) {
+                        System.out.println("Name found");
+                    }
+                    else {
+                        for (String token : tokens) {
+                            adder = adder + token +",";
+                        }
+                        arr.add(adder);
+                        adder = "" ;
+                    }
+                }
+
+                FileWriter output = new FileWriter("D:\\Collage\\Summer2020\\DataBase\\test.txt" );
+                output.write(name.getText() + ",");
+                output.write(model.getText() + ",");
+                output.write(memory.getText() + ",");
+                output.write(harddisk.getText() + ",");
+                output.write(predate.getText() + ",");
+                output.write(test1.getText());
+                output.write("\n");
+
+
+                for (String c : arr){
+                    output.write(c);
+                    output.write("\n");
+                }
+
+                arr.clear();
+                output.close();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }
 // end of class controller !!

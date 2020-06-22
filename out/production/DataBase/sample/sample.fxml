@@ -21,7 +21,7 @@
       <TextField fx:id="test1" layoutX="237.0" layoutY="290.0" />
       <Button layoutX="304.0" layoutY="338.0" mnemonicParsing="false" onAction="#addData" prefHeight="25.0" prefWidth="112.0" text="Save" textFill="#2d8600" />
       <Button layoutX="185.0" layoutY="338.0" mnemonicParsing="false" onAction="#deleteData" prefHeight="25.0" prefWidth="104.0" text="Delete" textFill="RED" />
-      <Button layoutX="185.0" layoutY="382.0" mnemonicParsing="false" opacity="0.6" prefHeight="25.0" prefWidth="104.0" text="Update" />
+      <Button layoutX="185.0" layoutY="382.0" mnemonicParsing="false" onAction="#updateData" opacity="0.6" prefHeight="25.0" prefWidth="104.0" text="Update" />
       <Button layoutX="304.0" layoutY="382.0" mnemonicParsing="false" onAction="#Search" opacity="0.6" prefHeight="25.0" prefWidth="112.0" text="Search" />
 
    </children>
